@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <!-- Use Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #E0E0E0;
+        }
+
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+        
+        /* Modal animation classes */
+        .modal-enter-active {
+            transition: opacity 0.3s ease;
+        }
+        .modal-leave-active {
+            transition: opacity 0.3s ease;
+        }
+        .modal-enter, .modal-leave-to {
+            opacity: 0;
+        }
+        .modal-content-enter-active {
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .modal-content-leave-active {
+            transition: transform 0.3s ease;
+        }
+        .modal-content-enter, .modal-content-leave-to {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-[#0A0A0A] min-h-screen flex flex-col items-center p-4">
+
+    <!-- Main Container -->
+    <div class="w-full max-w-6xl mx-auto flex flex-col items-center">
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-5xl font-bold tracking-tight text-[#E0E0E0]">Movie <span class="text-[#FF5722]">Chima</span></h1>
+            <p class="mt-2 text-gray-400 text-lg">Grab your popcorn and watch. </p>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="w-full max-w-lg flex items-center bg-[#1E1E1E] rounded-full p-2 shadow-lg mb-8">
+            <input type="text" id="searchInput" placeholder="Search for a movie..." class="flex-grow bg-transparent text-gray-200 focus:outline-none px-5 py-2 placeholder-gray-500">
+            <button id="searchButton" class="bg-[#FF5722] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#E64A19] transition-colors duration-300 transform hover:scale-105 shadow-md">Search</button>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="hidden text-center text-xl text-[#FF5722] font-semibold mt-8">
+            <svg class="animate-spin h-10 w-10 text-[#FF5722] mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="mt-4">Loading movies...</p>
+        </div>
+
+        <!-- Movie Results Container -->
+        <div id="movieResults" class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 mt-8 w-full">
+            <!-- Movie cards will be injected here -->
+        </div>
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center mt-8 text-gray-500">
+            <p class="text-2xl font-semibold">No movies found.</p>
+            <p class="mt-2">Please try a different search term.</p>
+        </div>
+
+    </div>
+
+    <!-- Movie Details Modal -->
+    <div id="movieModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden transition-opacity duration-300">
+        <div id="modalContent" class="bg-[#121212] rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row transition-all duration-300 transform opacity-0 scale-95">
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
